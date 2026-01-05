@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AROMA Coffee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<script>
+    fetch("https://ipapi.co/json/")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("country").textContent = data.country_name;
+            document.getElementById("city").textContent = data.city;
+        })
+        .catch(() => {
+            document.getElementById("country").textContent = "Unavailable";
+            document.getElementById("city").textContent = "Unavailable";
+        });
+    </script>
+    
+  
+    
+
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let visits = localStorage.getItem("test_visits");
+        visits = visits ? parseInt(visits) + 1 : 1;
+        localStorage.setItem("test_visits", visits);
+        document.getElementById("visits").textContent = visits;
+    });
+    </script>
+    
+   
+    </html>
+    
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <div class="logo">
+        <img src="logoaroma.png" alt="Aroma Coffee House Logo" class="logo-img">
+        <h1>Aroma</h1>
+    </div>    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- ================= VISITOR CARD ================= -->
+<div class="visitor-card">
+    <h3>Visitor Location</h3>
+    <p><strong>Country:</strong> <span id="country">Loading...</span></p>
+    <p><strong>City:</strong> <span id="city">Loading...</span></p>
+    <p><strong>Visits:</strong> <span id="visits">Loading...</span></p>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Where Every Cup Tells a Story</h1>
+        <p>Discover the art of authentic coffee</p>
+        <a href="menu.html" class="btn">Order Online</a>
+    </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about">
+    <h2>About Us</h2>
+    <div class="service-card_para">
+        <div class="service">
+                <p class="intro">
+                    At <strong>AROMA</strong>, coffee is more than just a beverage —
+                    it is a ritual, a moment of calm, and a source of inspiration.
+                </p>
+            </div>
+
+            <div class="service">
+                <p>
+                    Carefully selected coffee beans, roasted with precision,
+                    deliver rich flavors and a refined aroma in every cup.
+                    Coffee naturally enhances focus, boosts energy,
+                    supports digestion, and provides antioxidants
+                    that contribute to overall well-being.
+                </p>
+            </div>
+        
+            <div class="service">
+                <p>
+                    Our space is designed to offer comfort and elegance,
+                    where each visit becomes a memorable experience,
+                    whether you seek productivity, relaxation,
+                    or a moment shared with others.
+                </p>
+            </div>
+
+    </div>
+
+   
+
+</section>
+
+
+<!-- ================= SERVICES ================= -->
+<section class="services">
+    <div class="service-card">☕ Premium Coffee</div>
+    <div class="service-card">📶 Free Wi-Fi</div>
+    <div class="service-card">🌿 Outdoor Terrace</div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    <p>© 2026 AROMA Coffee</p>
+    <div class="socials">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+    </div>
+</footer>
+
+</body>
+</html>
