@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Animations Exercises</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        section {
+            margin-bottom: 120px;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        /* ===== Exercise 1 ===== */
+        #mainTitle {
+            opacity: 0;
+            font-size: 40px;
+        }
+
+        /* ===== Exercise 2 ===== */
+        .hover-btn {
+            padding: 15px 30px;
+            font-size: 16px;
+            background-color: #6f4e37;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== Exercise 3 ===== */
+        #info {
+            display: none;
+            margin-top: 15px;
+            background-color: #f4f4f4;
+            padding: 10px;
+        }
+
+        /* ===== Exercise 4 ===== */
+        .scroll-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== Exercise 5 ===== */
+        .gallery img {
+            width: 200px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ================= Exercise 1 ================= -->
+<section>
+    <h2>Exercise 1: Fade-in Animation</h2>
+    <h1 id="mainTitle">Welcome to Our Café</h1>
+</section>
+
+<!-- ================= Exercise 2 ================= -->
+<section>
+    <h2>Exercise 2: Hover Animation</h2>
+    <button class="hover-btn" id="hoverBtn">Hover Me</button>
+</section>
+
+<!-- ================= Exercise 3 ================= -->
+<section>
+    <h2>Exercise 3: Click Interaction</h2>
+    <button id="toggleBtn">Show / Hide Opening Hours</button>
+    <div id="info">
+        <p>Monday – Friday: 8:00 - 22:00</p>
+        <p>Saturday – Sunday: 9:00 - 23:00</p>
+    </div>
+</section>
+
+<!-- ================= Exercise 4 ================= -->
+<section class="scroll-section" id="scrollSection">
+    <h2>Exercise 4: Scroll Animation</h2>
+    <p>
+        Cette section apparaît progressivement lorsque l’utilisateur fait défiler la page.
+    </p>
+</section>
+
+<!-- ================= Exercise 5 ================= -->
+<section>
+    <h2>Exercise 5: Interactive Gallery</h2>
+    <div class="gallery">
+        <img src="logoaroma.png" alt="img1">
+        <img src="logoaroma.png" alt="img2">
+        <img src="logoaroma.png" alt="img3">
+    </div>
+</section>
+
+<script>
+/* ===== Exercise 1 : Fade-in on page load ===== */
+window.onload = function () {
+    const title = document.getElementById("mainTitle");
+    let opacity = 0;
+
+    const fade = setInterval(() => {
+        opacity += 0.02;
+        title.style.opacity = opacity;
+
+        if (opacity >= 1) {
+            clearInterval(fade);
+        }
+    }, 30);
+};
+
+/* ===== Exercise 2 : Hover Animation ===== */
+const hoverBtn = document.getElementById("hoverBtn");
+
+hoverBtn.addEventListener("mouseenter", () => {
+    hoverBtn.style.transform = "scale(1.1)";
+    hoverBtn.style.backgroundColor = "#a47148";
+});
+
+hoverBtn.addEventListener("mouseleave", () => {
+    hoverBtn.style.transform = "scale(1)";
+    hoverBtn.style.backgroundColor = "#6f4e37";
+});
+
+/* ===== Exercise 3 : Click Interaction ===== */
+const toggleBtn = document.getElementById("toggleBtn");
+const info = document.getElementById("info");
+
+toggleBtn.addEventListener("click", () => {
+    if (info.style.display === "none" || info.style.display === "") {
+        info.style.display = "block";
+    } else {
+        info.style.display = "none";
+    }
+});
+
+/* ===== Exercise 4 : Scroll Animation ===== */
+const scrollSection = document.getElementById("scrollSection");
+
+window.addEventListener("scroll", () => {
+    const position = scrollSection.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (position < windowHeight - 100) {
+        scrollSection.classList.add("visible");
+    }
+});
+
+/* ===== Exercise 5 : Interactive Gallery ===== */
+const images = document.querySelectorAll(".gallery img");
+
+images.forEach(img => {
+    img.addEventListener("mouseenter", () => {
+        img.style.transform = "scale(1.2)";
+    });
+
+    img.addEventListener("mouseleave", () => {
+        img.style.transform = "scale(1)";
+    });
+});
+</script>
+
+</body>
+</html>

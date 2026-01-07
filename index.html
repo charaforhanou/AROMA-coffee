@@ -23,20 +23,27 @@
             document.getElementById("country").textContent = "Unavailable";
             document.getElementById("city").textContent = "Unavailable";
         });
-    </script>
-    
-  
-    
+</script>
 
-    
-    <script>
+<!-- REMPLACEZ CE SCRIPT ⬇️ -->
+<script>
     document.addEventListener("DOMContentLoaded", function () {
-        let visits = localStorage.getItem("test_visits");
-        visits = visits ? parseInt(visits) + 1 : 1;
-        localStorage.setItem("test_visits", visits);
+        // Vérifier si c'est une nouvelle session
+        if (!sessionStorage.getItem("session_active")) {
+            // Nouvelle session : incrémenter le compteur
+            let visits = localStorage.getItem("test_visits");
+            visits = visits ? parseInt(visits) + 1 : 1;
+            localStorage.setItem("test_visits", visits);
+            
+            // Marquer la session comme active
+            sessionStorage.setItem("session_active", "true");
+        }
+        
+        // Afficher le nombre de visites
+        let visits = localStorage.getItem("test_visits") || 1;
         document.getElementById("visits").textContent = visits;
     });
-    </script>
+</script>
     
    
     </html>
@@ -56,16 +63,17 @@
         </ul>
     </nav>
 </header>
-<!-- ================= VISITOR CARD ================= -->
+
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+    <!-- ================= VISITOR CARD ================= -->
 <div class="visitor-card">
     <h3>Visitor Location</h3>
     <p><strong>Country:</strong> <span id="country">Loading...</span></p>
     <p><strong>City:</strong> <span id="city">Loading...</span></p>
     <p><strong>Visits:</strong> <span id="visits">Loading...</span></p>
 </div>
-
-<!-- ================= HERO ================= -->
-<section class="hero">
     <div class="hero-content">
         <h1>Where Every Cup Tells a Story</h1>
         <p>Discover the art of authentic coffee</p>
@@ -116,6 +124,18 @@
     <div class="service-card">📶 Free Wi-Fi</div>
     <div class="service-card">🌿 Outdoor Terrace</div>
 </section>
+<section class="service-para">
+    <div>
+        <img src="https://thumbs.dreamstime.com/b/terrasse-vide-de-caf%C3%A9-avec-des-tables-et-pr%C3%A9sidences-99665041.jpg" alt="Coffee Beans"> 
+        
+        <img src="logoaroma.png" alt="Coffee Beans"> 
+        <img src="logoaroma.png" alt="Coffee Beans"> 
+    </div>
+
+
+</section>
+
+
 
 <!-- ================= FOOTER ================= -->
 <footer>

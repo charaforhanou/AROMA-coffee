@@ -244,7 +244,7 @@ footer {
     color: inherit;
 }
 .visitor-card {
-    position: fixed;
+    position: absolute;
     left: 20px;
     top: 120px;
     width: 220px;
@@ -252,8 +252,8 @@ footer {
     padding: 15px;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    font-family: 'Poppins', sans-serif;
-    z-index: 1000;
+    /* font-family: 'Poppins', sans-serif; */
+    /* z-index: 1000; */
 }
 
 .visitor-card h3 {
