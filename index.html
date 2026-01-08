@@ -10,6 +10,9 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+
+    
 </head>
 
 <script>
@@ -62,7 +65,74 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
+
+     <!-- TensorFlow.js -->
+     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.15.0"></script>
+
+     <!-- MobileNet -->
+     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+ <style>
+       
+        
+        h2 {
+            color: #333;
+        }
+        #imageUpload {
+            padding: 10px;
+            margin: 20px 0;
+        }
+        #image {
+            max-width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+        }
+        #result {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            min-height: 100px;
+        }
+        .hot {
+            background: #ffebee !important;
+            color: #c62828;
+            font-weight: bold;
+        }
+        .cold {
+            background: #e3f2fd !important;
+            color: #1565c0;
+            font-weight: bold;
+        }
+        .unknown {
+            background: #fff3e0 !important;
+            color: #e65100;
+        }
+    </style>
+     <style>
+         body {
+             font-family: Arial, sans-serif;
+             text-align: center;
+             margin-top: 0px;
+         }
+         img {
+             border: 1px solid #ccc;
+             margin-top: 0px;
+         }
+     </style>
 </header>
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- ================= HERO ================= -->
@@ -112,7 +182,103 @@
             </div>
 
     </div>
+    <h2>☕ Détecteur de Café Chaud/Froid</h2>
 
+    <input type="file" id="imageUpload" accept="image/*">
+
+    <br>
+    <img id="img" width="300">
+
+    <div id="result">Résultat : Chargement du modèle...</div>
+
+    <script>
+        let model;
+    
+        async function loadModel() {
+            model = await mobilenet.load();
+            document.getElementById("result").innerText = 
+                "✅ Modèle chargé. Veuillez uploader une image de café.";
+        }
+    
+        loadModel();
+    
+        document.getElementById("imageUpload").addEventListener("change", function (event) {
+            const img = document.getElementById("image");
+            img.src = URL.createObjectURL(event.target.files[0]);
+            img.style.display = "block";
+        });
+    
+        document.getElementById("image").onload = async function () {
+            if (!model) return;
+    
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerText = "⏳ Analyse en cours...";
+            resultDiv.className = "";
+    
+            // Obtenir les 5 meilleures prédictions pour plus de précision
+            const predictions = await model.classify(this, 5);
+    
+            console.log("Prédictions:", predictions);
+    
+            // Analyser toutes les prédictions
+            let coffeeType = "INCONNU";
+            let cssClass = "unknown";
+            let isCoffee = false;
+    
+            // Mots-clés pour café CHAUD
+            const hotKeywords = [
+                "cup", "mug", "espresso", "coffee", "cappuccino", 
+                "latte", "pot", "teapot", "pitcher", "cup of coffee"
+            ];
+            
+            // Mots-clés pour café FROID
+            const coldKeywords = [
+                "glass", "ice", "iced", "milkshake", "smoothie",
+                "frappe", "frappuccino", "cold drink", "iced coffee",
+                "drinking glass", "tumbler"
+            ];
+    
+            // Vérifier toutes les prédictions
+            for (let pred of predictions) {
+                const label = pred.className.toLowerCase();
+                const confidence = pred.probability;
+    
+                // Détecter café froid en premier (plus spécifique)
+                if (coldKeywords.some(word => label.includes(word)) && confidence > 0.1) {
+                    coffeeType = "CAFÉ FROID 🧊❄️";
+                    cssClass = "cold";
+                    isCoffee = true;
+                    break;
+                }
+                
+                // Détecter café chaud
+                if (hotKeywords.some(word => label.includes(word)) && confidence > 0.1) {
+                    coffeeType = "CAFÉ CHAUD ☕🔥";
+                    cssClass = "hot";
+                    isCoffee = true;
+                }
+            }
+    
+            // Si aucun café détecté
+            if (!isCoffee) {
+                coffeeType = "❌ PAS DE CAFÉ DÉTECTÉ";
+            }
+    
+            // Afficher le résultat principal
+            const mainLabel = predictions[0].className;
+            const mainConfidence = (predictions[0].probability * 100).toFixed(2);
+    
+            resultDiv.className = cssClass;
+            resultDiv.innerHTML = `
+                <h3>${coffeeType}</h3>
+                <hr style="border: 1px solid #ddd; margin: 15px 0;">
+                <strong>Objet détecté:</strong> ${mainLabel}<br>
+                <strong>Confiance:</strong> ${mainConfidence}%<br>
+                <br>
+                <small><em>Top prédictions: ${predictions.slice(0, 3).map(p => p.className).join(", ")}</em></small>
+            `;
+        };
+    </script>
    
 
 </section>
@@ -124,16 +290,7 @@
     <div class="service-card">📶 Free Wi-Fi</div>
     <div class="service-card">🌿 Outdoor Terrace</div>
 </section>
-<section class="service-para">
-    <div>
-        <img src="https://thumbs.dreamstime.com/b/terrasse-vide-de-caf%C3%A9-avec-des-tables-et-pr%C3%A9sidences-99665041.jpg" alt="Coffee Beans"> 
-        
-        <img src="logoaroma.png" alt="Coffee Beans"> 
-        <img src="logoaroma.png" alt="Coffee Beans"> 
-    </div>
 
-
-</section>
 
 
 

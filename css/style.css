@@ -266,3 +266,294 @@ footer {
     font-size: 14px;
     margin: 6px 0;
 }
+.cart-link {
+    font-weight: bold;
+    color: #6f4e37;
+}
+
+.menu-card button {
+    background-color: #6f4e37;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.menu-card button:hover {
+    background-color: #5a3e2b;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5e6d3 0%, #d4a373 100%);
+    min-height: 100vh;
+}
+
+.header {
+position: sticky;
+top: 0;
+background: #3e2723;
+padding: 15px 40px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 100;
+}
+
+
+.logo {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #5d4037;
+}
+
+.logo-img {
+width: 55px;
+height: 55px;
+border-radius: 50%;
+}
+.logo h1 {
+color: #fbfbfb;
+font-size: 1.6rem;
+letter-spacing: 2px;
+font-weight: 600;
+animation-delay: var(/* stylelint-disable rule */
+/* stylelint-enable rule */);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links {
+list-style: none;
+display: flex;
+}
+
+.nav-links li {
+margin-left: 20px;
+}
+
+.nav-links a {
+color: #fff;
+text-decoration: none;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #d4a373;
+    background: rgba(212, 163, 115, 0.1);
+}
+
+.cart-link {
+    background: #5d4037;
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+.cart-link:hover {
+    background: #3e2723 !important;
+}
+
+.menu {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.menu h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #5d4037;
+    margin-bottom: 1rem;
+}
+
+.menu-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    padding: 0.8rem 2rem;
+    border: none;
+    background: white;
+    color: #5d4037;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tab-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.tab-button.active {
+    background: #5d4037;
+    color: white;
+}
+
+.menu-section {
+    display: none;
+}
+
+.menu-section.active {
+    display: block;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #5d4037;
+    margin: 2rem 0 1.5rem 0;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.menu-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.menu-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.menu-card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-card h3 {
+    color: #5d4037;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.menu-card p {
+    color: #666;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.menu-card span {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #d4a373;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.menu-card small {
+    font-size: 0.8rem;
+    color: #e53935;
+    font-weight: normal;
+}
+
+.menu-card button {
+    padding: 0.8rem;
+    background: #5d4037;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.menu-card button:hover {
+    background: #3e2723;
+}
+
+.menu-card button:active {
+    transform: scale(0.98);
+}
+
+footer {
+    background: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+    color: #5d4037;
+}
+
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #4caf50;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .menu {
+        padding: 1rem;
+    }
+
+    .menu h2 {
+        font-size: 2rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+}

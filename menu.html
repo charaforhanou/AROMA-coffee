@@ -2,21 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - AROMA Coffee</title>
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 
 <header class="header">
     <div class="logo">
-        <img src="logoaroma.png" alt="Aroma Coffee House Logo" class="logo-img">
-        <h1>Aroma</h1>
-    </div>    <nav>
+        <a href="index.html" class="logo-link">
+            <img src="logoaroma.png" alt="Aroma Coffee House Logo" class="logo-img" onerror="this.style.display='none'">
+            <h1>Aroma</h1>
+        </a>
+    </div>
+
+    <nav>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="menu.html">Menu</a></li>
+            <li><a href="menu.html" class="active">Menu</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li>
+                <a href="cart.html" class="cart-link">
+                    🛒 Cart (<span id="cart-count">0</span>)
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -24,63 +35,429 @@
 <section class="menu">
     <h2>Our Menu</h2>
 
-    <div class="menu-grid">
+    <div class="menu-tabs">
+        <button class="tab-button active" onclick="showTab('hot')">☕ Hot Drinks</button>
+        <button class="tab-button" onclick="showTab('cold')">🧊 Cold Drinks</button>
+        <button class="tab-button" onclick="showTab('all')">🌟 All Drinks</button>
+    </div>
 
-        <!-- CARD -->
-        <div class="menu-card">
-            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="">
-            <h3>Espresso</h3>
-            <p>Rich and intense coffee</p>
-            <span>18 MAD <small>(10% off online)</small></span>
-            <button>Order</button>
+    <!-- HOT DRINKS SECTION -->
+    <div id="hot" class="menu-section active">
+        <h3 class="section-title">Hot Beverages</h3>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="Espresso">
+                <div class="menu-card-content">
+                    <h3>Espresso</h3>
+                    <p>Rich and intense coffee shot</p>
+                    <span>18 MAD <small>(10% off online)</small></span>
+                    <button onclick="addToCart('Espresso', 18, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348" alt="Cappuccino">
+                <div class="menu-card-content">
+                    <h3>Cappuccino</h3>
+                    <p>Velvety frothy coffee with steamed milk</p>
+                    <span>22 MAD</span>
+                    <button onclick="addToCart('Cappuccino', 22, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1521302080334-4bebac2763a6" alt="Latte">
+                <div class="menu-card-content">
+                    <h3>Latte</h3>
+                    <p>Smooth and creamy espresso with milk</p>
+                    <span>24 MAD</span>
+                    <button onclick="addToCart('Latte', 24, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0" alt="Americano">
+                <div class="menu-card-content">
+                    <h3>Americano</h3>
+                    <p>Light and balanced espresso with hot water</p>
+                    <span>20 MAD</span>
+                    <button onclick="addToCart('Americano', 20, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3" alt="Mocha">
+                <div class="menu-card-content">
+                    <h3>Mocha</h3>
+                    <p>Chocolate-infused coffee delight</p>
+                    <span>25 MAD</span>
+                    <button onclick="addToCart('Mocha', 25, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1574169208507-84376174888f" alt="Flat White">
+                <div class="menu-card-content">
+                    <h3>Flat White</h3>
+                    <p>Perfect milk & espresso ratio</p>
+                    <span>23 MAD</span>
+                    <button onclick="addToCart('Flat White', 23, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc" alt="Hot Chocolate">
+                <div class="menu-card-content">
+                    <h3>Hot Chocolate</h3>
+                    <p>Rich and creamy Belgian chocolate</p>
+                    <span>26 MAD</span>
+                    <button onclick="addToCart('Hot Chocolate', 26, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9" alt="Chai Latte">
+                <div class="menu-card-content">
+                    <h3>Chai Latte</h3>
+                    <p>Spiced tea with steamed milk</p>
+                    <span>24 MAD</span>
+                    <button onclick="addToCart('Chai Latte', 24, 'hot')">Add to Cart</button>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <div class="menu-card">
-            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348" alt="">
-            <h3>Cappuccino</h3>
-            <p>Velvety frothy coffee</p>
-            <span>22 MAD</span>
-            <button onclick="window.location.href='order.html'">Order</button>
+    <!-- COLD DRINKS SECTION -->
+    <div id="cold" class="menu-section">
+        <h3 class="section-title">Cold Beverages</h3>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7" alt="Iced Coffee">
+                <div class="menu-card-content">
+                    <h3>Iced Coffee</h3>
+                    <p>Refreshing cold-brew coffee over ice</p>
+                    <span>22 MAD</span>
+                    <button onclick="addToCart('Iced Coffee', 22, 'cold')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735" alt="Iced Latte">
+                <div class="menu-card-content">
+                    <h3>Iced Latte</h3>
+                    <p>Smooth espresso with cold milk over ice</p>
+                    <span>25 MAD</span>
+                    <button onclick="addToCart('Iced Latte', 25, 'cold')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1562095241-8c6714fd4178" alt="Iced Mocha">
+                <div class="menu-card-content">
+                    <h3>Iced Mocha</h3>
+                    <p>Chocolate and espresso over ice</p>
+                    <span>27 MAD</span>
+                    <button onclick="addToCart('Iced Mocha', 27, 'cold')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1546173159-315724a31696" alt="Frappuccino">
+                <div class="menu-card-content">
+                    <h3>Frappuccino</h3>
+                    <p>Blended ice coffee with whipped cream</p>
+                    <span>28 MAD</span>
+                    <button onclick="addToCart('Frappuccino', 28, 'cold')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1497534547324-0ebb3f052e88" alt="Cold Brew">
+                <div class="menu-card-content">
+                    <h3>Cold Brew</h3>
+                    <p>Smooth 12-hour steeped coffee</p>
+                    <span>24 MAD</span>
+                    <button onclick="addToCart('Cold Brew', 24, 'cold')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1623065422902-30a2d299bbe4" alt="Iced Caramel Macchiato">
+                <div class="menu-card-content">
+                    <h3>Iced Caramel Macchiato</h3>
+                    <p>Vanilla and caramel with espresso</p>
+                    <span>29 MAD</span>
+                    <button onclick="addToCart('Iced Caramel Macchiato', 29, 'cold')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1622126807280-9b5b5f0f2d7f" alt="Iced Matcha Latte">
+                <div class="menu-card-content">
+                    <h3>Iced Matcha Latte</h3>
+                    <p>Japanese green tea with cold milk</p>
+                    <span>26 MAD</span>
+                    <button onclick="addToCart('Iced Matcha Latte', 26, 'cold')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1600785209945-ff3c24c541ba" alt="Fruit Smoothie">
+                <div class="menu-card-content">
+                    <h3>Fruit Smoothie</h3>
+                    <p>Fresh blended fruits with ice</p>
+                    <span>30 MAD</span>
+                    <button onclick="addToCart('Fruit Smoothie', 30, 'cold')">Add to Cart</button>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <div class="menu-card">
-            <img src="https://images.unsplash.com/photo-1521302080334-4bebac2763a6" alt="">
-            <h3>Latte</h3>
-            <p>Smooth and creamy</p>
-            <span>24 MAD</span>
-            <button  onclick="window.location.href='order.html'">Order</button>
+    <!-- ALL DRINKS SECTION -->
+    <div id="all" class="menu-section">
+        <h3 class="section-title">All Our Beverages</h3>
+        <div class="menu-grid">
+            <!-- Hot Drinks -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="Espresso">
+                <div class="menu-card-content">
+                    <h3>Espresso ☕</h3>
+                    <p>Rich and intense coffee shot</p>
+                    <span>18 MAD <small>(10% off online)</small></span>
+                    <button onclick="addToCart('Espresso', 18, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348" alt="Cappuccino">
+                <div class="menu-card-content">
+                    <h3>Cappuccino ☕</h3>
+                    <p>Velvety frothy coffee with steamed milk</p>
+                    <span>22 MAD</span>
+                    <button onclick="addToCart('Cappuccino', 22, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1521302080334-4bebac2763a6" alt="Latte">
+                <div class="menu-card-content">
+                    <h3>Latte ☕</h3>
+                    <p>Smooth and creamy espresso with milk</p>
+                    <span>24 MAD</span>
+                    <button onclick="addToCart('Latte', 24, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0" alt="Americano">
+                <div class="menu-card-content">
+                    <h3>Americano ☕</h3>
+                    <p>Light and balanced espresso with hot water</p>
+                    <span>20 MAD</span>
+                    <button onclick="addToCart('Americano', 20, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3" alt="Mocha">
+                <div class="menu-card-content">
+                    <h3>Mocha ☕</h3>
+                    <p>Chocolate-infused coffee delight</p>
+                    <span>25 MAD</span>
+                    <button onclick="addToCart('Mocha', 25, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1574169208507-84376174888f" alt="Flat White">
+                <div class="menu-card-content">
+                    <h3>Flat White ☕</h3>
+                    <p>Perfect milk & espresso ratio</p>
+                    <span>23 MAD</span>
+                    <button onclick="addToCart('Flat White', 23, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc" alt="Hot Chocolate">
+                <div class="menu-card-content">
+                    <h3>Hot Chocolate ☕</h3>
+                    <p>Rich and creamy Belgian chocolate</p>
+                    <span>26 MAD</span>
+                    <button onclick="addToCart('Hot Chocolate', 26, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9" alt="Chai Latte">
+                <div class="menu-card-content">
+                    <h3>Chai Latte ☕</h3>
+                    <p>Spiced tea with steamed milk</p>
+                    <span>24 MAD</span>
+                    <button onclick="addToCart('Chai Latte', 24, 'hot')">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Cold Drinks -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7" alt="Iced Coffee">
+                <div class="menu-card-content">
+                    <h3>Iced Coffee 🧊</h3>
+                    <p>Refreshing cold-brew coffee over ice</p>
+                    <span>22 MAD</span>
+                    <button onclick="addToCart('Iced Coffee', 22, 'cold')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735" alt="Iced Latte">
+                <div class="menu-card-content">
+                    <h3>Iced Latte 🧊</h3>
+                    <p>Smooth espresso with cold milk over ice</p>
+                    <span>25 MAD</span>
+                    <button onclick="addToCart('Iced Latte', 25, 'cold')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1562095241-8c6714fd4178" alt="Iced Mocha">
+                <div class="menu-card-content">
+                    <h3>Iced Mocha 🧊</h3>
+                    <p>Chocolate and espresso over ice</p>
+                    <span>27 MAD</span>
+                    <button onclick="addToCart('Iced Mocha', 27, 'cold')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1546173159-315724a31696" alt="Frappuccino">
+                <div class="menu-card-content">
+                    <h3>Frappuccino 🧊</h3>
+                    <p>Blended ice coffee with whipped cream</p>
+                    <span>28 MAD</span>
+                    <button onclick="addToCart('Frappuccino', 28, 'cold')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1497534547324-0ebb3f052e88" alt="Cold Brew">
+                <div class="menu-card-content">
+                    <h3>Cold Brew 🧊</h3>
+                    <p>Smooth 12-hour steeped coffee</p>
+                    <span>24 MAD</span>
+                    <button onclick="addToCart('Cold Brew', 24, 'cold')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1623065422902-30a2d299bbe4" alt="Iced Caramel Macchiato">
+                <div class="menu-card-content">
+                    <h3>Iced Caramel Macchiato 🧊</h3>
+                    <p>Vanilla and caramel with espresso</p>
+                    <span>29 MAD</span>
+                    <button onclick="addToCart('Iced Caramel Macchiato', 29, 'cold')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1622126807280-9b5b5f0f2d7f" alt="Iced Matcha Latte">
+                <div class="menu-card-content">
+                    <h3>Iced Matcha Latte 🧊</h3>
+                    <p>Japanese green tea with cold milk</p>
+                    <span>26 MAD</span>
+                    <button onclick="addToCart('Iced Matcha Latte', 26, 'cold')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1600785209945-ff3c24c541ba" alt="Fruit Smoothie">
+                <div class="menu-card-content">
+                    <h3>Fruit Smoothie 🧊</h3>
+                    <p>Fresh blended fruits with ice</p>
+                    <span>30 MAD</span>
+                    <button onclick="addToCart('Fruit Smoothie', 30, 'cold')">Add to Cart</button>
+                </div>
+            </div>
         </div>
-
-        <div class="menu-card">
-            <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0" alt="">
-            <h3>Americano</h3>
-            <p>Light and balanced</p>
-            <span>20 MAD</span>
-            <button onclick="window.location.href='order.html'">Order</button>
-        </div>
-
-        <div class="menu-card">
-            <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3" alt="">
-            <h3>Mocha</h3>
-            <p>Chocolate-infused delight</p>
-            <span>25 MAD</span>
-            <button onclick="window.location.href='order.html'">Order</button>
-        </div>
-
-        <div class="menu-card">
-            <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0" alt="">
-            <h3>Flat White</h3>
-            <p>Perfect milk & espresso ratio</p>
-            <span>23 MAD</span>
-            <button onclick=" href='order.html'">Order</button>
-        </div>
-
     </div>
 </section>
 
 <footer>
-    <p>© 2026 AROMA Coffee</p>
+    <p>© 2026 AROMA Coffee - Quality Beverages Since 2020</p>
 </footer>
+
+<div id="toast" class="toast"></div>
+
+<script>
+// Cart management
+let cart = [];
+
+function loadCart() {
+    const saved = JSON.parse(localStorage.getItem('aromaCart') || '[]');
+    cart = saved;
+    updateCartCount();
+}
+
+function saveCart() {
+    localStorage.setItem('aromaCart', JSON.stringify(cart));
+}
+
+function updateCartCount() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cart-count').textContent = count;
+}
+
+function addToCart(name, price, type) {
+    const existing = cart.find(item => item.name === name);
+    
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            type: type,
+            quantity: 1
+        });
+    }
+    
+    saveCart();
+    updateCartCount();
+    showToast(`${name} added to cart! 🎉`);
+}
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+// Tab switching
+function showTab(tab) {
+    // Hide all sections
+    document.querySelectorAll('.menu-section').forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Remove active from all buttons
+    document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Show selected section
+    document.getElementById(tab).classList.add('active');
+    
+    // Add active to clicked button
+    event.target.classList.add('active');
+}
+
+// Initialize cart on page load
+loadCart();
+</script>
 
 </body>
 </html>
