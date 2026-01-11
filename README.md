@@ -52,7 +52,7 @@ aroma-coffee/
 │   ├── style.css       # Main stylesheet
 │   └── about.css       # About page styles
 └── js/
-    └── about.js        # Interactive features
+       # Interactive features
 ```
 
 ---
