@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact - AROMA Coffee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contact.css">
 </head>
 <body>
 
+<!-- NAVBAR IDENTIQUE -->
 <header class="header">
     <div class="logo">
         <img src="logoaroma.png" alt="Aroma Coffee House Logo" class="logo-img">
@@ -24,25 +27,597 @@
 </header>
 
 <section class="contact">
-    <h2>Contact Us</h2>
+    <div class="container">
+        <h2>Get In Touch</h2>
+        <p class="contact-subtitle">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
 
-    <form class="contact-form">
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Message"></textarea>
-        <button type="submit">Send</button>
-    </form>
+        <div class="contact-wrapper">
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <form class="contact-form" id="contactForm" novalidate>
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            placeholder="John Doe" 
+                            required
+                            minlength="2">
+                        <span class="error-message" id="nameError"></span>
+                    </div>
 
-    <div class="contact-info">
-        <p>📍 Casablanca, Morocco</p>
-        <p>📞 +212 6 00 00 00 00</p>
-        <p>⏰ 8:00 AM – 10:00 PM</p>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="john@example.com" 
+                            required>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            placeholder="+212 6 00 00 00 00"
+                            pattern="[0-9+\s\-()]+">
+                        <span class="error-message" id="phoneError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="reservation">Reservation</option>
+                            <option value="catering">Catering Services</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="complaint">Complaint</option>
+                        </select>
+                        <span class="error-message" id="subjectError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            placeholder="Tell us what's on your mind..." 
+                            required
+                            minlength="10"
+                            rows="5"></textarea>
+                        <span class="error-message" id="messageError"></span>
+                        <span class="char-counter">0 / 500</span>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-icon">📍</div>
+                    <h3>Location</h3>
+                    <p>Casablanca, Morocco</p>
+                    <p class="info-detail">Boulevard de la Corniche</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">📞</div>
+                    <h3>Phone</h3>
+                    <p>+212 6 00 00 00 00</p>
+                    <p class="info-detail">Mon - Sun: 8:00 AM - 10:00 PM</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">✉️</div>
+                    <h3>Email</h3>
+                    <p>contact@aromacoffee.ma</p>
+                    <p class="info-detail">We'll reply within 24 hours</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">⏰</div>
+                    <h3>Hours</h3>
+                    <p>Monday - Sunday</p>
+                    <p class="info-detail">8:00 AM - 10:00 PM</p>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
+<!-- Success Modal -->
+<div class="modal" id="successModal">
+    <div class="modal-content">
+        <div class="modal-icon">✓</div>
+        <h3>Message Sent Successfully!</h3>
+        <p>Thank you for contacting us. We'll get back to you soon.</p>
+        <button class="modal-btn" onclick="closeModal()">Close</button>
+    </div>
+</div>
 
 <footer>
     <p>© 2026 AROMA Coffee</p>
 </footer>
 
+<script src="js/contact.js"></script>
+
 </body>
 </html>
+
+<!-- ==================== CSS FILE (css/contact.css) ==================== -->
+<style>
+/* Contact Page Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #8B4513;
+    --secondary-color: #D2691E;
+    --error-color: #e74c3c;
+    --success-color: #27ae60;
+    --text-color: #333;
+    --border-color: #ddd;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Contact Section */
+.contact {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: calc(100vh - 200px);
+}
+
+.contact h2 {
+    text-align: center;
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.contact-subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 3rem;
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+/* Form Container */
+.contact-form-container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-size: 0.95em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    transition: all 0.3s;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+}
+
+.form-group input.invalid,
+.form-group select.invalid,
+.form-group textarea.invalid {
+    border-color: var(--error-color);
+}
+
+.form-group input.valid,
+.form-group select.valid,
+.form-group textarea.valid {
+    border-color: var(--success-color);
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.85em;
+    margin-top: 0.3rem;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+.char-counter {
+    font-size: 0.85em;
+    color: #999;
+    text-align: right;
+    margin-top: 0.3rem;
+}
+
+.submit-btn {
+    padding: 15px 30px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(139, 69, 19, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Contact Info */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+.info-icon {
+    font-size: 2.5em;
+    margin-bottom: 1rem;
+}
+
+.info-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.3em;
+}
+
+.info-card p {
+    color: var(--text-color);
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.info-detail {
+    color: #666 !important;
+    font-size: 0.9em !important;
+    font-weight: 400 !important;
+    margin-top: 0.3rem;
+}
+
+/* Success Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--success-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+    margin: 0 auto 1.5rem;
+}
+
+.modal-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5em;
+}
+
+.modal-content p {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.modal-btn {
+    padding: 12px 30px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.modal-btn:hover {
+    background: var(--secondary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .contact h2 {
+        font-size: 2em;
+    }
+
+    .contact-form-container {
+        padding: 1.5rem;
+    }
+}
+</style>
+
+<!-- ==================== JS FILE (js/contact.js) ==================== -->
+<script>
+// Contact Form Validation
+
+const form = document.getElementById('contactForm');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const phoneInput = document.getElementById('phone');
+const subjectInput = document.getElementById('subject');
+const messageInput = document.getElementById('message');
+
+// Error message elements
+const nameError = document.getElementById('nameError');
+const emailError = document.getElementById('emailError');
+const phoneError = document.getElementById('phoneError');
+const subjectError = document.getElementById('subjectError');
+const messageError = document.getElementById('messageError');
+
+// Character counter
+const charCounter = document.querySelector('.char-counter');
+
+// Validation patterns
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phonePattern = /^[0-9+\s\-()]+$/;
+
+// Real-time validation
+nameInput.addEventListener('input', validateName);
+emailInput.addEventListener('input', validateEmail);
+phoneInput.addEventListener('input', validatePhone);
+subjectInput.addEventListener('change', validateSubject);
+messageInput.addEventListener('input', validateMessage);
+
+function validateName() {
+    const value = nameInput.value.trim();
+    
+    if (value === '') {
+        showError(nameInput, nameError, 'Name is required');
+        return false;
+    } else if (value.length < 2) {
+        showError(nameInput, nameError, 'Name must be at least 2 characters');
+        return false;
+    } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+        showError(nameInput, nameError, 'Name can only contain letters');
+        return false;
+    } else {
+        showSuccess(nameInput, nameError);
+        return true;
+    }
+}
+
+function validateEmail() {
+    const value = emailInput.value.trim();
+    
+    if (value === '') {
+        showError(emailInput, emailError, 'Email is required');
+        return false;
+    } else if (!emailPattern.test(value)) {
+        showError(emailInput, emailError, 'Please enter a valid email');
+        return false;
+    } else {
+        showSuccess(emailInput, emailError);
+        return true;
+    }
+}
+
+function validatePhone() {
+    const value = phoneInput.value.trim();
+    
+    if (value !== '' && !phonePattern.test(value)) {
+        showError(phoneInput, phoneError, 'Please enter a valid phone number');
+        return false;
+    } else {
+        showSuccess(phoneInput, phoneError);
+        return true;
+    }
+}
+
+function validateSubject() {
+    const value = subjectInput.value;
+    
+    if (value === '') {
+        showError(subjectInput, subjectError, 'Please select a subject');
+        return false;
+    } else {
+        showSuccess(subjectInput, subjectError);
+        return true;
+    }
+}
+
+function validateMessage() {
+    const value = messageInput.value.trim();
+    const length = value.length;
+    
+    // Update character counter
+    charCounter.textContent = `${length} / 500`;
+    
+    if (value === '') {
+        showError(messageInput, messageError, 'Message is required');
+        return false;
+    } else if (length < 10) {
+        showError(messageInput, messageError, 'Message must be at least 10 characters');
+        return false;
+    } else if (length > 500) {
+        showError(messageInput, messageError, 'Message must be less than 500 characters');
+        return false;
+    } else {
+        showSuccess(messageInput, messageError);
+        return true;
+    }
+}
+
+function showError(input, errorElement, message) {
+    input.classList.remove('valid');
+    input.classList.add('invalid');
+    errorElement.textContent = message;
+    errorElement.classList.add('show');
+}
+
+function showSuccess(input, errorElement) {
+    input.classList.remove('invalid');
+    input.classList.add('valid');
+    errorElement.classList.remove('show');
+}
+
+// Form submission
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Validate all fields
+    const isNameValid = validateName();
+    const isEmailValid = validateEmail();
+    const isPhoneValid = validatePhone();
+    const isSubjectValid = validateSubject();
+    const isMessageValid = validateMessage();
+    
+    // Check if all validations pass
+    if (isNameValid && isEmailValid && isPhoneValid && isSubjectValid && isMessageValid) {
+        // Show success modal
+        showSuccessModal();
+        
+        // Reset form
+        form.reset();
+        
+        // Remove validation classes
+        document.querySelectorAll('.valid, .invalid').forEach(el => {
+            el.classList.remove('valid', 'invalid');
+        });
+        
+        // Reset character counter
+        charCounter.textContent = '0 / 500';
+    }
+});
+
+function showSuccessModal() {
+    const modal = document.getElementById('successModal');
+    modal.classList.add('show');
+}
+
+function closeModal() {
+    const modal = document.getElementById('successModal');
+    modal.classList.remove('show');
+}
+
+// Close modal when clicking outside
+document.getElementById('successModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+</script>
